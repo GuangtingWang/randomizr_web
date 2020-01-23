@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'semantic-ui-react';
 import './App.css';
 
 class App extends React.Component {
@@ -80,7 +81,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Randomizr</h1>
-
+        <div>
         {this.state.vars.map((v,indx) => 
           <div className='var-container' key={`var-${indx}`}>
             <label>{v.name}</label>
@@ -89,17 +90,19 @@ class App extends React.Component {
                 return (
                   <div key={`opt-${idx}`}>
                     <input type='string' onChange={e => this.handleChange(e, indx, idx)} value={o} />
-                    <button className='remove-option-btn' onClick={() => this.removeOption(indx, idx)} >-</button>
+                    <Button size='mini' className='negative' onClick={() => this.removeOption(indx, idx)} >-</Button>
                   </div>
                 )
               })}
               
-              <button className='add-option-btn' onClick={() => this.addOption(indx)}>+</button>
+              <Button className='positive' onClick={() => this.addOption(indx)}>+</Button>
             </div>
           </div>
         )}
-      <button className='add-variant-btn' onClick={this.addVariable}>+</button>
-      <button onClick={this.getResult}>Get Result</button>
+      <Button size='small' className='primary' onClick={this.addVariable}>+</Button>
+      </div>
+      <Button className='positive' onClick={this.getResult}>Get Result</Button>
+      <Button className='negative'>Clear</Button>
       <p id='res'></p>
     </div>
     );
